@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>แผนที่ทริปโอซาก้า 26 ธ.ค. – 2 ม.ค.</title>
+<style>
+:root{--bg:#faf9f5;--card:#fff;--tx:#2c2c2a;--mu:#5f5e5a;--bd:#d3d1c7;--acc:#185fa5}
+@media (prefers-color-scheme:dark){:root{--bg:#1f1e1c;--card:#2a2926;--tx:#f1efe8;--mu:#b4b2a9;--bd:#444441;--acc:#85b7eb}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Thai",sans-serif;line-height:1.6}
+.wrap{max-width:820px;margin:0 auto;padding:14px}
+h1{font-size:21px;font-weight:500;margin:4px 0}
+.sub{margin:0 0 10px;font-size:14px;color:var(--mu)}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px}
+.tabs button{flex:0 0 auto;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:999px;padding:6px 13px;font-size:14px;cursor:pointer;font-family:inherit}
+.tabs button.on{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+iframe{width:100%;height:62vh;min-height:360px;border:1px solid var(--bd);border-radius:12px;background:var(--card);display:block;margin-top:6px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px 14px;margin-top:10px}
+.card h2{font-size:17px;font-weight:500;margin:0 0 4px}
+.card p{margin:0 0 8px;font-size:14px;color:var(--mu)}
+.btn{display:inline-block;background:var(--acc);color:var(--bg);text-decoration:none;border-radius:8px;padding:8px 14px;font-size:14px}
+.note{font-size:12px;color:var(--mu);margin-top:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>แผนที่ทริปโอซาก้า 26 ธ.ค. – 2 ม.ค.</h1>
+<p class="sub">ที่พัก Nikko Tsutenkaku (ย่าน Shinsekai) · กดเลือกวัน แผนที่จะแสดงเส้นทางรถไฟ/เดินจากโรงแรม</p>
+<div class="tabs" id="tabs"></div>
+<iframe id="map" title="แผนที่ Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+<div class="card" id="card"></div>
+<p class="note">ต้องเปิดไฟล์นี้ขณะต่อเน็ต แผนที่ดึงจาก Google Maps จริง จุดเริ่มต้นคือตำแหน่ง Nikko Tsutenkaku ตามลิงก์ที่ระบุ</p>
+</div>
+<script>
+var HOTEL="34.6509753,135.5028671";
+var PL={dot:"34.6689,135.5011",shin:"34.6725,135.5014",ame:"34.6719,135.4988",kuro:"34.6654,135.5062",haru:"34.6463,135.5133",usj:"34.6657,135.4323",kai:"34.6545,135.4290",ume:"34.7053,135.4897",ara:"35.0168,135.6713",kix:"34.4320,135.2304"};
+var D=[
+{t:"26 ธ.ค.",h:"Shinsekai + Dotonbori",n:"ถึง KIX 14:10 เข้าเมืองเช็กอิน เดินเล่น Shinsekai กินข้าว แล้วไปถ่ายรูปกลางคืนที่ Dotonbori (ห่างโรงแรม ~1.9 กม.)",s:["dot"]},
+{t:"27 ธ.ค.",h:"Shinsaibashi + Amerikamura",n:"วันช้อปปิ้ง เดินเชื่อมกันได้ในย่านเดียว (ห่างโรงแรม ~2.5 กม.)",s:["shin","ame"]},
+{t:"28 ธ.ค.",h:"Arashiyama เกียวโต",n:"ทริปวันเดียว ห่างราว 42 กม. ใช้ JR ประมาณ 1–1.5 ชม. ออกเช้าไปให้ถึงป่าไผ่ก่อนคนเยอะ",s:["ara"]},
+{t:"29 ธ.ค.",h:"Universal Studios Japan",n:"ห่างโรงแรม ~6.9 กม. ใช้เวลา 35–50 นาที ไปให้ถึงก่อนเปิดสวนสนุก",s:["usj"]},
+{t:"30 ธ.ค.",h:"Kaiyukan + Umeda Sky",n:"เช้าอควาเรียมฝั่งอ่าว (~7 กม.) เย็นขึ้นชมวิวที่ Umeda Sky",s:["kai","ume"]},
+{t:"31 ธ.ค.",h:"Kuromon + Shinsaibashi + Dotonbori",n:"ไปตลาดแต่เช้า ร้านปิดเร็วในวันสิ้นปี กลับโรงแรมก่อนรถไฟเที่ยวสุดท้าย",s:["kuro","shin","dot"]},
+{t:"1 ม.ค.",h:"Harukas 300",n:"ใกล้โรงแรมที่สุด ~0.9 กม. เช็กเวลาเปิดวันปีใหม่ก่อนไป",s:["haru"]},
+{t:"2 ม.ค.",h:"กลับไทย (สนามบิน KIX)",n:"เครื่องออก 09:20 ควรถึงสนามบินราว 06:20 ห่างราว 35 กม. ควรจองรถล่วงหน้า",s:["kix"]}
+];
+var tabs=document.getElementById("tabs"),map=document.getElementById("map"),card=document.getElementById("card");
+function show(i){
+var d=D[i],pts=d.s.map(function(k){return PL[k]});
+Array.prototype.forEach.call(tabs.children,function(b,j){b.className=(j===i)?"on":""});
+var chain=pts.join("+to:");
+map.src="https://www.google.com/maps?saddr="+HOTEL+"&daddr="+chain+"&dirflg=r&output=embed";
+var link="https://www.google.com/maps/dir/?api=1&origin="+HOTEL+"&destination="+pts[pts.length-1]+(pts.length>1?"&waypoints="+pts.slice(0,-1).join("%7C"):"")+"&travelmode=transit";
+card.innerHTML="<h2>"+d.t+" · "+d.h+"</h2><p>"+d.n+"</p><a class=\"btn\" href=\""+link+"\" target=\"_blank\" rel=\"noopener\">เปิดใน Google Maps</a>";
+}
+D.forEach(function(d,i){var b=document.createElement("button");b.textContent=d.t;b.onclick=function(){show(i)};tabs.appendChild(b)});
+show(0);
+</script>
+</body>
+</html>
